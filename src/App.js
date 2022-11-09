@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 const { v4: uuidv4 } = require('uuid');
 
 function AppGet() {
-  const requestURI = 'https://localhost:7256/api/VideoGames';
+  const requestURI = 'https://localhost:7078/api/Flyrod/';
 
-  const [videoGames, setVideoGames] = useState([]);
+  const [flyrods, setFlyrods] = useState([]);
 
   useEffect(() => {
     fetch(requestURI)
       .then((response) => response.json())
       .then((data) => {
-        setVideoGames(data);
-        // console.log(json);
+        setFlyrods(data);
+        //console.log(json);
         return data;
       });
-  }, [requestURI]);
+  }, []);
 
-  // console.log(videoGames);
+  console.log(flyrods);
 
-  return videoGames;
+  return flyrods;
 }
 
 function KeyGen() {
@@ -29,17 +29,17 @@ function KeyGen() {
 }
 
 export default function App() {
-  var videoGames = AppGet();
-
-  return videoGames.map((element) => {
-    return (
-      <ul key={KeyGen()}>
-        <li>
-          <h2>Title: {element.title}</h2>
-        </li>
-        <li>StudioId: {element.studioId}</li>
-        <li>MainCharacterId: {element.mainCharacterId}</li>
-      </ul>
-    );
-  });
+  var flyrods = AppGet();
+  return (<h1>Hi</h1>)
+  //return flyrods.map((element) => {
+  //  return (
+  //    <ul key={KeyGen()}>
+  //      <li>
+  //        <h2>Title: {element.title}</h2>
+  //      </li>
+  //      <li>StudioId: {element.studioId}</li>
+  //      <li>MainCharacterId: {element.mainCharacterId}</li>
+  //    </ul>
+  //  );
+  //});
 }
